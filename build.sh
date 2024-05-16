@@ -5,7 +5,7 @@ set -ouex pipefail
 RELEASE="$(rpm -E %fedora)"
 
 # Install additional repos
-mkdir -p /tmp/rmps
+mkdir -p /tmp/rpms
 curl -Lo /tmp/rpms/rpmfusion-free-release-${RELEASE}.noarch.rpm https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-${RELEASE}.noarch.rpm
 curl -Lo /tmp/rpms/rpmfusion-nonfree-release-${RELEASE}.noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-${RELEASE}.noarch.rpm
 
