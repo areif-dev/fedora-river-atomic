@@ -21,6 +21,7 @@ rpm-ostree install -y \
     alacritty \
     bluez \
     bluez-tools \
+    distrobox \
     dunst \
     firefox \
     grim \
@@ -35,8 +36,6 @@ rpm-ostree install -y \
     swaybg \
     swayidle \
     swaylock \
-    tldr \
-    tor-browser \
     vlc \
     waybar \
     wl-clipboard \
