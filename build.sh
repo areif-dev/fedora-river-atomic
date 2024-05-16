@@ -21,9 +21,11 @@ rpm-ostree install -y \
     alacritty \
     bluez \
     bluez-tools \
+    cascadia-code-fonts \
     distrobox \
     dunst \
     firefox \
+    fontawesome-fonts \
     grim \
     keepassxc \
     neovim \
