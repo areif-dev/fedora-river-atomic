@@ -30,7 +30,7 @@ rpm-ostree install -y \
     pavucontrol \
     plocate \
     ripgrep \
-    river \ 
+    river \
     rofi-wayland \
     swaybg \
     swayidle \
