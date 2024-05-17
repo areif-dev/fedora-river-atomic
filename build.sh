@@ -19,29 +19,46 @@ curl -Lo /tmp/rpms/rpmfusion-nonfree-release-${RELEASE}.noarch.rpm https://mirro
 # Default system packages 
 rpm-ostree install -y \
     alacritty \
+    bc \
     bluez \
     bluez-tools \
     cascadia-code-fonts \
+    dbus-daemon \
+    dbus-tools \
     distrobox \
     dunst \
     firefox \
     fontawesome-fonts \
+    gnome-keyring \
+    google-noto-emoji-fonts \
     grim \
     keepassxc \
+    lxpolkit \
     neovim \
     papirus-icon-theme \
     pavucontrol \
+    pipewire \
+    playerctl \
     plocate \
+    polkit \
+    ranger \
     ripgrep \
     river \
     rofi-wayland \
     swaybg \
     swayidle \
     swaylock \
+    thunar \
+    thunar-archive-plugin \
+    thunar-volman \
     vlc \
     waybar \
     wl-clipboard \
-    wlr-randr 
+    wlr-randr \
+    wireplumber \
+    xdg-desktop-portal-wlr \
+    xdg-user-dirs \
+    xorg-x11-server-Xwayland 
 
 # Virtualization packages 
 rpm-ostree install -y \
