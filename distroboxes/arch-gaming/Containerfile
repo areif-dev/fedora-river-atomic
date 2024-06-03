@@ -1,0 +1,69 @@
+FROM docker.io/archlinux/archlinux:latest
+
+# Enable parallel downloads and multilib
+COPY pacman.conf /etc/pacman.conf
+
+RUN pacman -Syu --noconfirm
+
+# Install missing Distrobox dependencies
+RUN pacman -S --noconfirm \
+    bash-completion \
+    bc \
+    bzip2 \
+    curl \
+    diffutils \
+    findutils \
+    gnupg \
+    inetutils \
+    iproute \
+    iputils \
+    keyutils \
+    krb5 \
+    less \
+    lsof \
+    man-db \
+    man-pages \
+    ncurses \
+    nss-mdns \
+    openssh \
+    pam \
+    pigz \
+    pinentry \
+    procps-ng \
+    rsync \
+    sudo \
+    tcpdump \
+    time \
+    traceroute \
+    tree \
+    tzdata \
+    unzip \
+    util-linux \
+    wget \
+    which \
+    whois \
+    words \
+    xorg-xauth \
+    xz \
+    zip \
+    zsh
+
+# User software
+RUN pacman -S --noconfirm \
+    alsa-lib \
+    base-devel \
+    git \
+    gtk3 \
+    steam \
+    zsh-autosuggestions 
+
+RUN useradd --no-create-home --shell=/bin/false aur-builder && \
+    usermod -L aur-builder
+
+USER aur-builder
+RUN git clone https://aur.archlinux.org/heroic-games-launcher-bin.git /tmp/heroic-games-launcher-bin && \
+    cd /tmp/heroic-games-launcher-bin && \
+    makepkg 
+
+USER root
+RUN pacman -U --noconfirm /tmp/heroic-games-launcher-bin/heroic-games-launcher-bin*
