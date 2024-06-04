@@ -52,6 +52,7 @@ RUN dnf install -y 'dnf-command(copr)' && \
 # Install user software
 RUN dnf install -y \
     '@Development Tools' \
+    jq \
     neovim \
     nodejs \
     rpmdevtools \
@@ -62,6 +63,12 @@ RUN dnf install -y \
     python3-pip \
     starship \
     zsh-autosuggestions
+
+RUN mkdir -p /tmp/extras
+COPY ./extras.sh /tmp/extras/extras.sh
+WORKDIR /tmp/extra
+RUN /tmp/extras/extras.sh && \
+    rm -rf /tmp/extras
 
 # Update and clean up 
 RUN dnf upgrade -y && \
