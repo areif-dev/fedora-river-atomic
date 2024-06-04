@@ -50,20 +50,29 @@ RUN pacman -S --noconfirm \
 
 # User software
 RUN pacman -S --noconfirm \
-    alsa-lib \
-    base-devel \
-    git \
-    gtk3 \
+    discord \
     steam \
     zsh-autosuggestions 
 
-RUN useradd --no-create-home --shell=/bin/false aur-builder && \
-    usermod -L aur-builder
+# AUR dependencies
+RUN pacman -S --noconfirm \
+    base-devel \
+    git \
+    gtk3 \
+    libxss \
+    nss \
+    ttf-liberation
+
+RUN useradd -m aur-builder && \
+    echo "builduser ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/builduser && \
+    chmod 0440 /etc/sudoers.d/builduser
 
 USER aur-builder
-RUN git clone https://aur.archlinux.org/heroic-games-launcher-bin.git /tmp/heroic-games-launcher-bin && \
-    cd /tmp/heroic-games-launcher-bin && \
-    makepkg 
+WORKDIR /home/aur-builder
+COPY ./aur-packages.txt /home/aur-builder
+COPY ./makepkgs.sh /home/aur-builder
+COPY ./installpkgs.sh /home/aur-builder
+RUN /home/aur-builder/makepkgs.sh
 
-USER root
-RUN pacman -U --noconfirm /tmp/heroic-games-launcher-bin/heroic-games-launcher-bin*
+USER root 
+RUN /home/aur-builder/installpkgs.sh

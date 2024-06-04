@@ -1,0 +1,3 @@
+freetube-bin
+heroic-games-launcher-bin
+tidal-hifi-bin
