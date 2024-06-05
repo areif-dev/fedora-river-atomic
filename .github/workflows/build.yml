@@ -31,9 +31,7 @@ jobs:
         sudo mv cosign /usr/local/bin/
 
     - name: Log in to GHCR
-      env: 
-        CR_PAT: ${{ secrets.GITHUB_TOKEN }}
-      run: echo "$CR_PAT" | podman login ghcr.io -u ${{ github.actor }} --password-stdin
+      run: echo "${{ secrets.GITHUB_TOKEN }}" | podman login ghcr.io -u ${{ github.actor }} --password-stdin
 
     - name: Build, Push, and Sign Containers
       run: |
@@ -48,7 +46,7 @@ jobs:
         # Loop through each subdirectory in the base directory
         for SUBDIR in "$BASE_DIR"/*; do
             if [ -d "$SUBDIR" ]; then
-            IMAGE_NAME="ghcr.io/${{ github.repository_owner }}/$(basename "$SUBDIR"):latest"
+            IMAGE_NAME="ghcr.io/${{ github.repository_owner }}/yafai:latest"
                 echo "Building and pushing $IMAGE_NAME from $SUBDIR:"
                 # Change into the subdirectory
                 cd "$SUBDIR"
