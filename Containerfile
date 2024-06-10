@@ -34,7 +34,9 @@ RUN rpm-ostree install -y \
     wireplumber \
     xdg-desktop-portal-wlr \
     xdg-user-dirs \
-    xorg-x11-server-Xwayland 
+    xorg-x11-server-Xwayland \
+    zsh \
+    zsh-autosuggestions
 
 # Applications 
 RUN rpm-ostree install -y \
