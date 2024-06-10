@@ -17,6 +17,7 @@ RUN rpm-ostree install -y \
     grim \
     jmtpfs \
     lxpolkit \
+    man-pages \
     openssh \
     openssl \
     papirus-icon-theme \
@@ -78,8 +79,7 @@ RUN rpm-ostree install -y \
     virt-viewer \
     libguestfs-tools \
     python3-libguestfs \
-    virt-top && \
-    systemctl enable libvirtd
+    virt-top
 
 # Wifi packages 
 RUN rpm-ostree install -y --allow-inactive \
@@ -100,6 +100,10 @@ RUN rpm-ostree install -y --allow-inactive \
     tiwilink-firmware    \
     atmel-firmware       \
     zd1211-firmware   
+
+# Enable services
+RUN systemctl enable libvirtd && \
+    systemctl enable plocate-updatedb
 
 RUN mkdir -p /var/lib/alternatives && \
     ostree container commit
