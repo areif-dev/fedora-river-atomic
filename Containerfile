@@ -64,7 +64,7 @@ RUN rpm-ostree install -y \
 RUN rpm-ostree install -y \
     cascadia-code-fonts \
     fontawesome-fonts \
-    google-noto-emoji-fonts \
+    google-noto-emoji-fonts 
 
 # Virtualization packages 
 RUN rpm-ostree install -y \
