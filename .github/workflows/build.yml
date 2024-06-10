@@ -1,5 +1,4 @@
 ---
-
 name: "Build Custom Fedora Atomic Image"
 
 permissions: 
