@@ -1,4 +1,5 @@
 ---
+
 name: "Build Custom Fedora Atomic Image"
 
 permissions: 
@@ -30,7 +31,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       platforms: 'linux/amd64'
-      registry: 'ghcr.io/areif-dev/yafai'
+      registry: 'ghcr.io/areif-dev'
       base_version: 40
     steps:
       - name: Generate tags
