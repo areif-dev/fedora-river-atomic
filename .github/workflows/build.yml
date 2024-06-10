@@ -1,92 +1,101 @@
 ---
 
-name: Build, Publish, and Sign Distroboxes Containers
+name: "Build Custom Fedora Atomic Image"
+
+permissions: 
+  contents: read
+  packages: write
 
 on:
-  push:
-    branches:
-      - main
   pull_request:
     branches:
       - main
+    paths:
+      - './'
+      - '.github/workflows/build.yml'
+    paths-ignore: 
+      - 'README.md'
+      - 'LICENSE'
+  push:
+    branches:
+      - main
+    paths:
+      - './'
+      - '.github/workflows/build.yml'
+    paths-ignore: 
+      - 'README.md'
+      - 'LICENSE'
+  schedule:
+    - cron: '0 10 * * *'  # Build at 10:00 UTC. A few hours after base fedora is updated
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
-  build-publish-sign-containers:
+  build-push-images:
     runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
-
-    - name: Set up podman
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y podman
-
-    - name: Install cosign
-      run: |
-        COSIGN_VERSION=$(curl -s https://api.github.com/repos/sigstore/cosign/releases/latest | jq -r .tag_name | sed 's/v//')
-        curl -Lo cosign https://github.com/sigstore/cosign/releases/download/v$COSIGN_VERSION/cosign-linux-amd64
-        chmod +x cosign
-        sudo mv cosign /usr/local/bin/
-
-    - name: Log in to GHCR
-      run: echo "${{ secrets.GITHUB_TOKEN }}" | podman login ghcr.io -u ${{ github.actor }} --password-stdin
-
-    - name: Build, Push, and Sign Containers
-      run: |
-        BASE_DIR="distroboxes"
-
-        # Check if the base directory exists
-        if [ ! -d "$BASE_DIR" ]; then
-            echo "Directory $BASE_DIR does not exist."
-            exit 1
-        fi
-
-        # Loop through each subdirectory in the base directory
-        for SUBDIR in "$BASE_DIR"/*; do
-            if [ -d "$SUBDIR" ]; then
-            IMAGE_NAME="ghcr.io/${{ github.repository_owner }}/yafai:latest"
-                echo "Building and pushing $IMAGE_NAME from $SUBDIR:"
-                # Change into the subdirectory
-                cd "$SUBDIR"
-                
-                # Check if the Containerfile exists
-                if [ -f "Containerfile" ]; then
-                    # Build the container image using podman
-                    podman build -t "$IMAGE_NAME" .
-                    if [ $? -ne 0 ]; then
-                        echo "Failed to build Containerfile in $SUBDIR."
-                        exit 1
-                    else 
-                        echo "Successfully built $IMAGE_NAME."
-                    fi
-                    # Push the container image to GHCR
-                    podman push "$IMAGE_NAME"
-                    if [ $? -ne 0 ]; then
-                        echo "Failed to push $IMAGE_NAME to GHCR."
-                        exit 1
-                    else
-                        echo "Successfully pushed $IMAGE_NAME to GHCR."
-                    fi
-                    # Sign the container image using cosign
-                    cosign sign --key ${{ secrets.SIGNING_SECRET }} $IMAGE_NAME
-                    if [ $? -ne 0 ]; then
-                        echo "Failed to sign $IMAGE_NAME."
-                        exit 1
-                    else
-                        echo "Successfully signed $IMAGE_NAME."
-                    fi
-                else
-                    echo "No Containerfile found in $SUBDIR."
-                fi
-
-                # Change back to the base directory
-                cd - > /dev/null
-                echo ""
-            fi
-        done
-
     env:
-      COSIGN_EXPERIMENTAL: 1
+      platforms: 'linux/amd64'
+      registry: 'ghcr.io/areif-dev/yafai'
+      base_version: 40
+    steps:
+      - name: Generate tags
+        id: generate-tags
+        shell: bash
+        run: |
+          # Generate a timestamp for creating an image version history
+          TIMESTAMP="$(date +%Y%m%d)"
+          BUILD_TAGS=()
+          BUILD_TAGS+=("${TIMESTAMP}")
+          BUILD_TAGS+=("latest")
+          BUILD_TAGS+=("${{ env.base_version }}")
+          alias_tags=("${BUILD_TAGS[@]}")
+          echo "Generated the following build tags: "
+          for TAG in "${BUILD_TAGS[@]}"; do
+              echo "${TAG}"
+          done
+          echo "alias_tags=${alias_tags[*]}" >> $GITHUB_OUTPUT
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build container image
+        uses: redhat-actions/buildah-build@v2
+        with:
+          platforms: ${{ env.platforms }}
+          context: ./
+          image: yafai
+          tags: | 
+            ${{ steps.generate-tags.outputs.alias_tags }}
+          containerfiles: ./Containerfile
+          layers: false
+          oci: true
+
+      - name: Push to Container Registry
+        uses: redhat-actions/push-to-registry@v2
+        id: push
+        with:
+          username: ${{ secrets.BOT_USERNAME }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          image: yafai
+          registry: ${{ env.registry }}
+          tags: |
+            ${{ steps.generate-tags.outputs.alias_tags }}
+
+      - name: Login to Container Registry
+        uses: redhat-actions/podman-login@v1
+        with:
+          registry: ${{ env.registry }}
+          username: ${{ secrets.BOT_USERNAME }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: sigstore/cosign-installer@v3.3.0
+
+      - name: Sign container image
+        run: |
+          cosign sign -y --recursive --key env://SIGNING_SECRET ${{ env.registry }}/yafai@${{ steps.push.outputs.digest }}
+        env:
+          COSIGN_EXPERIMENTAL: false
+          SIGNING_SECRET: ${{ secrets.SIGNING_SECRET }}
 
