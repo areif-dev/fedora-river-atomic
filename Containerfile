@@ -66,9 +66,40 @@ RUN rpm-ostree install -y \
     fontawesome-fonts \
     google-noto-emoji-fonts \
 
+# Virtualization packages 
+RUN rpm-ostree install -y \
+    virt-install \
+    libvirt-daemon-config-network \
+    libvirt-daemon-kvm \
+    qemu-kvm \
+    virt-manager \
+    virt-viewer \
+    libguestfs-tools \
+    python3-libguestfs \
+    virt-top && \
+    systemctl enable libvirtd
+
+# Wifi packages 
+RUN rpm-ostree install -y --allow-inactive \
+    NetworkManager       \
+    NetworkManager-tui   \
+    NetworkManager-wifi  \
+    atheros-firmware     \
+    b43-fwcutter         \
+    b43-openfwwf         \
+    brcmfmac-firmware    \
+    iwlegacy-firmware    \
+    iwlwifi-dvm-firmware \
+    iwlwifi-mvm-firmware \
+    libertas-firmware    \
+    mt7xxx-firmware      \
+    nxpwireless-firmware \
+    realtek-firmware     \
+    tiwilink-firmware    \
+    atmel-firmware       \
+    zd1211-firmware   
 
 RUN mkdir -p /var/lib/alternatives && \
-    /tmp/build.sh && \
     ostree container commit
 ## NOTES:
 # - /var/lib/alternatives is required to prevent failure with some RPM installs
