@@ -73,6 +73,7 @@ RUN rpm-ostree install -y \
 # Virtualization packages 
 RUN rpm-ostree install -y \
     virt-install \
+    libvirt \
     libvirt-daemon-config-network \
     libvirt-daemon-kvm \
     qemu-kvm \
