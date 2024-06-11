@@ -46,10 +46,6 @@ RUN rpm-ostree install -y \
     bc \
     distrobox \
     firefox \
-    keepassxc \
-    kpcli \
-    krita \
-    libreoffice \
     neovim \
     openvpn \
     pavucontrol \
