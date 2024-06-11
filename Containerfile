@@ -102,6 +102,11 @@ RUN rpm-ostree install -y --allow-inactive \
     atmel-firmware       \
     zd1211-firmware   
 
+RUN mkdir -p /tmp/extras
+COPY ./extras.sh /tmp/extras
+RUN /tmp/extras/extras.sh && \
+    rm -rf /tmp/extras
+
 # Enable services
 RUN systemctl enable libvirtd && \
     systemctl enable plocate-updatedb
