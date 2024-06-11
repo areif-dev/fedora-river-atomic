@@ -15,7 +15,7 @@
           "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDilgi7appBeltfv/I74nLsBvTFQgSEHRVYSwH8l0GYaVeNW6nQfXh4NCt8gikHb64EOl0/wyaBdNbyzbINgjWsgZg8BM1MrdqbkMlieeylKjkN8G6Y1qLOJW366QtjpZ+MVQ99Jb9ZD9cK4HFXsf69AiWSzSQJl4wyecvjBfN6mFFyGeWt6kPLMwdWVHjL5vXNAnVK/1gwxBLuSRgI4Nfh5r/i9/6xPDNopQPL4GOMVZmPYCSOam0KWFk/jR7p4SK/1hEcUekaB7pWK/gA9SONMdhY72C6ShwySw5g1+zY7CA/sQg20UFcNyFxW5ey2QJGWddb0yuuC9ZbeakCS3z2TFb6coP70kDXnMxbhCwci4n6LMBh3C6akvVUhabVPqwudl2wCzoTtyIuNME16nuC+eGuymEgjSVYxi7ypVi+65vmkiLYq66WgUMArVwFiL2kyt8K+2+mn8wYyEn5aTtzPqVH0mPnqHU5PJFzKQBVKPRffRaYKql+AqmLJUE2e38= aj@fedora",
           "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCX/qnMux9XfPgldoc2+8zIH0Z3kfcR2U43kNaLUctTS0qVCA4CUPUCJvEv1Qz+mQi9l4RvrF2MVrOjMeJjEHFCjtroUXaXXcv9uKSHbhlENFxYHliP0xc/vkQ5CbdOfSH1qfobdzmU5ygaDIfOCcfgeME8GRe1UB3MM8qRoslRnl8wpy8CW/Q9KSrMdAUbr+38oq0LxvOwC4UkjcSroAmtxyTLBnoqeQs45psNaDhqtgx7llCAIscSBBRFwuKs5c9AM2sLovdnnJpq5Lj93Wz1pNPuxhK7UQvz12BtJDdS3Avj/6+h9PjYwh9DXveDoazDXm6E33H0etScOv7K/REaArO9ntlOhFD2BnJzZly2Kg1DSzJsOi6vwU39OxdtC9/XdU2kVYjJ4rJ5uKkopp74aOzSNauM1j0YxbNScRUfGtMrYo9aJhQReVmk8xZ2eL1SORlXFF2xhM1AU1cw23g+oCmgqtVj/oDvNAlDc44yX8Vu4IahHKkLeWl0EzLvElU= u0_a316@localhost"
         ],
-        "shell": "/usr/bin/zsh"
+        "shell": "/bin/bash"
       }
     ]
   }
