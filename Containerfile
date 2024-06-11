@@ -103,7 +103,7 @@ RUN rpm-ostree install -y --allow-inactive \
     zd1211-firmware   
 
 RUN mkdir -p /tmp/extras
-COPY ./extras.sh /tmp/extras
+COPY ./extras.sh /tmp/extras/extras.sh
 RUN /tmp/extras/extras.sh && \
     rm -rf /tmp/extras
 
