@@ -18,6 +18,7 @@ RUN rpm-ostree install -y \
     jmtpfs \
     lxpolkit \
     man-pages \
+    nvtop \
     openssh \
     openssl \
     papirus-icon-theme \
