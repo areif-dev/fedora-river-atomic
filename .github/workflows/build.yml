@@ -59,7 +59,7 @@ jobs:
         with:
           platforms: ${{ env.platforms }}
           context: ./
-          image: yafai
+          image: fedora-river-atomic
           tags: | 
             ${{ steps.generate-tags.outputs.alias_tags }}
           containerfiles: ./Containerfile
@@ -72,7 +72,7 @@ jobs:
         with:
           username: ${{ secrets.BOT_USERNAME }}
           password: ${{ secrets.GITHUB_TOKEN }}
-          image: yafai
+          image: fedora-river-atomic 
           registry: ${{ env.registry }}
           tags: |
             ${{ steps.generate-tags.outputs.alias_tags }}
@@ -88,7 +88,7 @@ jobs:
 
       - name: Sign container image
         run: |
-          cosign sign -y --recursive --key env://SIGNING_SECRET ${{ env.registry }}/yafai@${{ steps.push.outputs.digest }}
+          cosign sign -y --recursive --key env://SIGNING_SECRET ${{ env.registry }}/fedora-river-atomic@${{ steps.push.outputs.digest }}
         env:
           COSIGN_EXPERIMENTAL: false
           SIGNING_SECRET: ${{ secrets.SIGNING_SECRET }}
