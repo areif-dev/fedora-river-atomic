@@ -32,7 +32,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       platforms: 'linux/amd64'
-      registry: 'ghcr.io/areif-dev'
+      registry: 'ghcr.io/areif-dev/fedora-river-atomic'
       base_version: 40
     steps:
       - name: Generate tags
