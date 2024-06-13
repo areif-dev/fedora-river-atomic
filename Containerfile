@@ -118,6 +118,7 @@ RUN /tmp/extras/extras.sh && \
 # Enable services
 RUN systemctl enable libvirtd && \
     systemctl enable plocate-updatedb  && \
+    updatedb && \
     systemctl enable tailscaled && \
     ostree container commit
 
