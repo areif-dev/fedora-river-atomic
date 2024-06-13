@@ -4,9 +4,9 @@ FROM quay.io/fedora/fedora-coreos:testing
 RUN rpm-ostree install -y \
     https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
     https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm && \
-    ostree remote add river-bsp-layout https://download.copr.fedorainfracloud.org/results/areif-dev/river-bsp-layout/fedora-40-x86_64/
+    ostree remote add river-bsp-layout https://download.copr.fedorainfracloud.org/results/areif-dev/river-bsp-layout/fedora-$(rpm -E %fedora)-x86_64/
     curl -Lo /etc/yum.repos.d/tailscale.repo https://pkgs.tailscale.com/stable/fedora/tailscale.repo && \
-    sed -i 's@gpgcheck=1@gpgcheck=0@g' /etc/yum.repos.d/tailscale.repo && \
+    sed -i 's/gpgcheck=1/gpgcheck=0/g' /etc/yum.repos.d/tailscale.repo && \
     ostree container commit
 
 # System 
