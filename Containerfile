@@ -4,8 +4,9 @@ FROM quay.io/fedora/fedora-coreos:testing
 RUN rpm-ostree install -y \
     https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
     https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm && \
+    rpm-ostree remote add river-bsp-layout https://download.copr.fedorainfracloud.org/results/areif-dev/river-bsp-layout/fedora-40-x86_64/
     curl -Lo /etc/yum.repos.d/tailscale.repo https://pkgs.tailscale.com/stable/fedora/tailscale.repo && \
-    sed -i 's@gpgcheck=1@gpgcheck=0@g' /etc/yum.repos.d/tailscale.repo  && \
+    sed -i 's@gpgcheck=1@gpgcheck=0@g' /etc/yum.repos.d/tailscale.repo && \
     ostree container commit
 
 # System 
@@ -30,6 +31,7 @@ RUN rpm-ostree install -y \
     plocate \
     polkit \
     river \
+    river-bsp-layout \
     rofi-wayland \
     swaybg \
     swayidle \
@@ -123,9 +125,9 @@ RUN systemctl enable libvirtd && \
     systemctl enable tailscaled && \
     ostree container commit
 
-RUN mkdir -p /var/lib/alternatives && \
-    ostree container commit
 ## NOTES:
 # - /var/lib/alternatives is required to prevent failure with some RPM installs
 # - All RUN commands must end with ostree container commit
 #   see: https://coreos.github.io/rpm-ostree/container/#using-ostree-container-commit
+RUN mkdir -p /var/lib/alternatives && \
+    ostree container commit
