@@ -7,6 +7,7 @@ RUN rpm-ostree install -y \
     ostree remote add river-bsp-layout https://download.copr.fedorainfracloud.org/results/areif-dev/river-bsp-layout/fedora-$(rpm -E %fedora)-x86_64/
     curl -Lo /etc/yum.repos.d/tailscale.repo https://pkgs.tailscale.com/stable/fedora/tailscale.repo && \
     sed -i 's/gpgcheck=1/gpgcheck=0/g' /etc/yum.repos.d/tailscale.repo && \
+    sed -i 's/\$basearch/$(rpm -E %fedora)/g' /etc/yum.repos.d/tailscale.repo && \
     ostree container commit
 
 # System 
