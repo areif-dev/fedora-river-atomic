@@ -53,6 +53,7 @@ RUN rpm-ostree install -y \
     distrobox \
     firefox \
     neovim \
+    nvtop \
     openvpn \
     pavucontrol \
     playerctl \
