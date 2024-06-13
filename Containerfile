@@ -1,8 +1,11 @@
 FROM quay.io/fedora/fedora-coreos:testing
 
+# Install extra repositories 
 RUN rpm-ostree install -y \
     https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
     https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm && \
+    curl -Lo /etc/yum.repos.d/tailscale.repo https://pkgs.tailscale.com/stable/fedora/tailscale.repo && \
+    sed -i 's@gpgcheck=1@gpgcheck=0@g' /etc/yum.repos.d/tailscale.repo  && \
     ostree container commit
 
 # System 
@@ -31,6 +34,7 @@ RUN rpm-ostree install -y \
     swaybg \
     swayidle \
     swaylock \
+    tailscale \
     waybar \
     wl-clipboard \
     wlr-randr \
@@ -114,6 +118,7 @@ RUN /tmp/extras/extras.sh && \
 # Enable services
 RUN systemctl enable libvirtd && \
     systemctl enable plocate-updatedb  && \
+    systemctl enable tailscaled && \
     ostree container commit
 
 RUN mkdir -p /var/lib/alternatives && \
