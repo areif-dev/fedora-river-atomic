@@ -1,8 +1,9 @@
 FROM quay.io/fedora/fedora-coreos:testing
 
 RUN rpm-ostree install -y \
-  https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
-  https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+    https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
+    https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm && \
+    ostree container commit
 
 # System 
 RUN rpm-ostree install -y \
@@ -38,7 +39,8 @@ RUN rpm-ostree install -y \
     xdg-user-dirs \
     xorg-x11-server-Xwayland \
     zsh \
-    zsh-autosuggestions
+    zsh-autosuggestions && \
+    ostree container commit
 
 # Applications 
 RUN rpm-ostree install -y \
@@ -58,13 +60,15 @@ RUN rpm-ostree install -y \
     torbrowser-launcher \
     unzip \
     vlc  \
-    zip
+    zip && \
+    ostree container commit
 
 # Fonts 
 RUN rpm-ostree install -y \
     cascadia-code-fonts \
     fontawesome-fonts \
-    google-noto-emoji-fonts 
+    google-noto-emoji-fonts  && \
+    ostree container commit
 
 # Virtualization packages 
 RUN rpm-ostree install -y \
@@ -77,7 +81,8 @@ RUN rpm-ostree install -y \
     virt-viewer \
     libguestfs-tools \
     python3-libguestfs \
-    virt-top
+    virt-top && \
+    ostree container commit
 
 # Wifi packages 
 RUN rpm-ostree install -y --allow-inactive \
@@ -97,16 +102,19 @@ RUN rpm-ostree install -y --allow-inactive \
     realtek-firmware     \
     tiwilink-firmware    \
     atmel-firmware       \
-    zd1211-firmware   
+    zd1211-firmware   && \
+    ostree container commit 
 
 RUN mkdir -p /tmp/extras
 COPY ./extras.sh /tmp/extras/extras.sh
 RUN /tmp/extras/extras.sh && \
-    rm -rf /tmp/extras
+    rm -rf /tmp/extras && \
+    ostree container commit
 
 # Enable services
 RUN systemctl enable libvirtd && \
-    systemctl enable plocate-updatedb
+    systemctl enable plocate-updatedb  && \
+    ostree container commit
 
 RUN mkdir -p /var/lib/alternatives && \
     ostree container commit
