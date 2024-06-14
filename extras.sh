@@ -1,5 +1,6 @@
 #!/usr/bin/env bash 
 
+# Install Starship prompt
 STARSHIP_VERSION=$(curl -s "https://api.github.com/repos/starship/starship/releases/latest" | jq -r '.tag_name' | sed 's/v//')
 curl -L -o "/tmp/extras/starship-x86_64-unknown-linux-gnu.tar.gz" "https://github.com/starship/starship/releases/download/v${STARSHIP_VERSION}/starship-x86_64-unknown-linux-gnu.tar.gz"
 curl -L -o "/tmp/extras/starship-x86_64-unknown-linux-gnu.tar.gz.sha256" "https://github.com/starship/starship/releases/download/v${STARSHIP_VERSION}/starship-x86_64-unknown-linux-gnu.tar.gz.sha256"
@@ -13,3 +14,6 @@ else
     echo "Starship checksums do not match"
     exit 1
 fi
+
+# Install rebase-distrobox script
+curl -Lo "/usr/bin/rebase-distrobox" "https://raw.githubusercontent.com/areif-dev/distrobox-images/main/rebase-distrobox"
