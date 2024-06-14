@@ -63,7 +63,6 @@ RUN rpm-ostree install -y \
     thunar \
     thunar-archive-plugin \
     thunar-volman \
-    torbrowser-launcher \
     unzip \
     vlc  \
     zip && \
