@@ -38,13 +38,8 @@ storage:
           After=network-online.target
           [Service]
           Type=oneshot
-          ExecStart=/usr/bin/bash -c '
-            mkdir -p /tmp/ohmyzsh &&
-            curl -Lo /tmp/ohmyzsh/install.sh https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh &&
-            bash /tmp/ohmyzsh/install.sh --unattended &&
-            rm -rf /tmp/ohmyzsh
-          '
-          ExecStartPost=/usr/bin/systemctl --user disable install-ohmyzsh.service
+          ExecStart=/usr/bin/bash -c 'mkdir -p /tmp/ohmyzsh/ && curl -Lo /tmp/ohmyzsh/install.sh https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh && bash /tmp/ohmyzsh/install.sh --unattended && rm -rf /tmp/ohmyzsh'
+          ExecStartPost=systemctl --user disable install-ohmyzsh.service
           [Install]
           WantedBy=default.target
       user:
