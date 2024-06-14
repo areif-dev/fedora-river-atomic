@@ -12,6 +12,11 @@ RUN rpm-ostree install -y \
 RUN rpm-ostree install -y \
     bluez \
     bluez-tools \
+    cockpit \
+    cockpit-machines \
+    cockpit-ostree \
+    cockpit-podman \
+    cockpit-system \
     dbus \
     dbus-daemon \
     dbus-tools \
@@ -118,6 +123,7 @@ RUN /tmp/extras/extras.sh && \
 
 # Enable services
 RUN systemctl enable libvirtd && \
+    systemctl enable cockpit && \
     systemctl enable plocate-updatedb  && \
     mkdir -p /var/lib/plocate && \
     systemctl enable tailscaled && \
