@@ -14,6 +14,8 @@ An opinionated image based on Fedora CoreOS featuring the River Wayland composit
 * Distrobox: Container management
 * Podman: Container management 
 * Cockpit: Web administration
+* Zsh: Shell 
+* Starship: Shell prompt
 
 ## Rebasing 
 
