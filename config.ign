@@ -20,6 +20,48 @@
     ]
   },
   "storage": {
+    "directories": [
+      {
+        "group": {
+          "name": "aj"
+        },
+        "path": "/home/aj/.config",
+        "user": {
+          "name": "aj"
+        },
+        "mode": 493
+      },
+      {
+        "group": {
+          "name": "aj"
+        },
+        "path": "/home/aj/.config/systemd",
+        "user": {
+          "name": "aj"
+        },
+        "mode": 493
+      },
+      {
+        "group": {
+          "name": "aj"
+        },
+        "path": "/home/aj/.config/systemd/user",
+        "user": {
+          "name": "aj"
+        },
+        "mode": 493
+      },
+      {
+        "group": {
+          "name": "aj"
+        },
+        "path": "/home/aj/.config/systemd/user/default.target.wants",
+        "user": {
+          "name": "aj"
+        },
+        "mode": 493
+      }
+    ],
     "files": [
       {
         "path": "/etc/hostname",
@@ -28,15 +70,46 @@
           "source": "data:,desktop"
         },
         "mode": 420
+      },
+      {
+        "path": "/var/lib/systemd/install-ohmyzsh/aj",
+        "mode": 420
+      },
+      {
+        "group": {
+          "name": "aj"
+        },
+        "path": "/home/aj/.config/systemd/user/install-ohmyzsh.service",
+        "user": {
+          "name": "aj"
+        },
+        "contents": {
+          "compression": "gzip",
+          "source": "data:;base64,H4sIAAAAAAAC/3RRvU7DQAze7yk8tdPldqQMIJBAAoFUEBJVh8vF6Z16OUe2QwlPj/oH7cDkwf5+vXwrSVfmFiVwGjRRqR+KqM9Z4Dnap8l+LO6hI4ZRkM11p8h1Qd0SbyyVnApW6nmNapYL5M8UcGVepwFrKiiR1Nx9YVioZ63dKOyaVFzjJYINMDcA/aZNDHYAp/3gKPbTt0SYzQxAGDmDfaSLlUsHe5VEiKqDXDnHflutk8ax2ZkMVBSLVoH6X9Bp9l4U2SlRlnOmvd7e1n9a1o7Fq2JpsT2ccw+WuwuAmf/FfSE5iyyTKPZB845IkKFN4puMcJSwR4ZKDiWa5fENK/Pui2J7M9Utdn7Meur7JwAA//8eN8wbuwEAAA=="
+        },
+        "mode": 420
+      }
+    ],
+    "links": [
+      {
+        "group": {
+          "name": "aj"
+        },
+        "path": "/home/aj/.config/systemd/user/default.target.wants/install-ohmyzsh.service",
+        "user": {
+          "name": "aj"
+        },
+        "hard": false,
+        "target": "/home/aj/.config/systemd/user/install-ohmyzsh.service"
       }
     ]
   },
   "systemd": {
     "units": [
       {
-        "contents": "[Unit]\nDescription=Layer ZSH\nWants=network-online.target \nAfter=network-online.target\n\n# We run before `zincati.service` to avoid conflicting rpm-ostree\n# transactions.\nBefore=zincati.service \nConditionPathExists=!/var/lib/%N.stamp \n\n[Service]\nType=oneshot\nRemainAfterExit=yes\n\n# `--allow-inactive` ensures that rpm-ostree does not return an error\n# if the package is already installed. This is useful if the package is\n# added to the root image in a future Fedora CoreOS release as it will\n# prevent the service from failing.\nExecStart=/usr/bin/rpm-ostree install -y --allow-inactive zsh zsh-autosuggestions\nExecStart=/bin/touch /var/lib/%N.stamp \nExecStart=/bin/systemctl --no-block reboot \n[Install]\nWantedBy=multi-user.target\n",
+        "contents": "[Unit]\nDescription=Fetch and deploy target image\n# Only run on the firstboot\nConditionFirstBoot=true\nAfter=network-online.target\n[Service]\n# This ordering is important\nAfter=ignition-firstboot-complete.service\nType=oneshot\nRemainAfterExit=yes\nExecStart=rpm-ostree rebase --reboot ostree-unverified-registry:ghcr.io/areif-dev/fedora-river-atomic/fedora-river-atomic:latest\n[Install]\nWantedBy=multi-user.target\n",
         "enabled": true,
-        "name": "rpm-ostree-install-zsh.service"
+        "name": "rebase-custom.service"
       }
     ]
   }

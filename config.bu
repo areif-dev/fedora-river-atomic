@@ -3,38 +3,90 @@ variant: fcos
 version: 1.5.0
 systemd:
   units:
-    - name: rpm-ostree-install-zsh.service
-      enabled: true 
+    # Auto rebase to new image
+    - name: rebase-custom.service
+      enabled: true
       contents: |
         [Unit]
-        Description=Layer ZSH
-        Wants=network-online.target 
+        Description=Fetch and deploy target image
+        # Only run on the firstboot
+        ConditionFirstBoot=true
         After=network-online.target
-        
-        # We run before `zincati.service` to avoid conflicting rpm-ostree
-        # transactions.
-        Before=zincati.service 
-        ConditionPathExists=!/var/lib/%N.stamp 
-
         [Service]
+        # This ordering is important
+        After=ignition-firstboot-complete.service
         Type=oneshot
         RemainAfterExit=yes
-
-        # `--allow-inactive` ensures that rpm-ostree does not return an error
-        # if the package is already installed. This is useful if the package is
-        # added to the root image in a future Fedora CoreOS release as it will
-        # prevent the service from failing.
-        ExecStart=/usr/bin/rpm-ostree install -y --allow-inactive zsh zsh-autosuggestions
-        ExecStart=/bin/touch /var/lib/%N.stamp 
-        ExecStart=/bin/systemctl --no-block reboot 
+        ExecStart=rpm-ostree rebase --reboot ostree-unverified-registry:ghcr.io/areif-dev/fedora-river-atomic/fedora-river-atomic:latest
         [Install]
         WantedBy=multi-user.target
+
 storage:
   files:
     - path: /etc/hostname 
       mode: 0644
       contents: 
         inline: desktop
+    - path: /var/lib/systemd/install-ohmyzsh/aj
+      mode: 0644
+    - path: /home/aj/.config/systemd/user/install-ohmyzsh.service
+      mode: 0644
+      contents:
+        inline: |
+          [Unit]
+          Description=Installs Oh-My-ZSH for user
+          After=network-online.target
+          [Service]
+          Type=oneshot
+          ExecStart=/usr/bin/bash -c '
+            mkdir -p /tmp/ohmyzsh &&
+            curl -Lo /tmp/ohmyzsh/install.sh https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh &&
+            bash /tmp/ohmyzsh/install.sh --unattended &&
+            rm -rf /tmp/ohmyzsh
+          '
+          ExecStartPost=/usr/bin/systemctl --user disable install-ohmyzsh.service
+          [Install]
+          WantedBy=default.target
+      user:
+        name: aj
+      group:
+        name: aj
+
+  links:
+    - path: /home/aj/.config/systemd/user/default.target.wants/install-ohmyzsh.service
+      user:
+        name: aj
+      group:
+        name: aj
+      target: /home/aj/.config/systemd/user/install-ohmyzsh.service
+      hard: false
+
+  directories:
+    - path: /home/aj/.config
+      mode: 0755
+      user:
+        name: aj 
+      group:
+        name: aj
+    - path: /home/aj/.config/systemd
+      mode: 0755
+      user:
+        name: aj
+      group:
+        name: aj
+    - path: /home/aj/.config/systemd/user
+      mode: 0755
+      user:
+        name: aj
+      group:
+        name: aj
+    - path: /home/aj/.config/systemd/user/default.target.wants
+      mode: 0755
+      user:
+        name: aj
+      group:
+        name: aj
+
 passwd:
   users:
     - name: aj 
