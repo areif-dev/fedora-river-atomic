@@ -88,6 +88,34 @@
           "source": "data:;base64,H4sIAAAAAAAC/3SQMU/DQAyF9/wKT+l0uR0pAwgkkEAgFYRE1eFycXqn3p0j26GEX49KW6ADkwe/9/z8rV5K1HV1jeI5jhqptHdF1KUk8BjMw2zelrcwEMMkyNXloMhtQd0Rbw2VFAs26niDWq2WyO/R47p6nkdsqaAE0urmA/1SHWtrJ2HbxWI7JwGMh0Xe9pHBjGA1j5ZCnj8lWKhr8BMnMPd0vomHao0ECKqjXFjLbtdsooap2xf0VBSLNp7yj+k0sxNFtkqU5G9SXcN3of8uGTMVp4qlx34v5gyGhzP54vfLJxJtZRbF7DXtzYIMfRTXJYRjrDn6Gjkgq1ZH6Ovq1RXF/mpuexzclPRE9ysAAP//sebOZ6kBAAA="
         },
         "mode": 420
+      },
+      {
+        "group": {
+          "name": "aj"
+        },
+        "path": "/home/aj/.config/systemd/user/upgrade-all-distroboxes.service",
+        "user": {
+          "name": "aj"
+        },
+        "contents": {
+          "compression": "",
+          "source": "data:,%5BUnit%5D%0ADescription%3DRebase%20all%20installed%20distroboxes%20on%20their%20latest%20images%20%0AAfter%3Dnetwork-online.target%20%0A%5BService%5D%0AType%3Doneshot%0AExecStart%3D%2Fusr%2Fbin%2Fupgrade-all-distroboxes%0A"
+        },
+        "mode": 420
+      },
+      {
+        "group": {
+          "name": "aj"
+        },
+        "path": "/home/aj/.config/systemd/user/upgrade-all-distroboxes.timer",
+        "user": {
+          "name": "aj"
+        },
+        "contents": {
+          "compression": "",
+          "source": "data:,%5BUnit%5D%0ADescription%3DDaily%20run%20of%20upgrade-all-distroboxes%20%0A%0A%5BTimer%5D%0AOnCalendar%3Ddaily%20%0APersistent%3Dtrue%20%0A%0A%5BInstall%5D%0AWantedBy%3Dtimers.target%0A"
+        },
+        "mode": 420
       }
     ],
     "links": [
@@ -101,6 +129,17 @@
         },
         "hard": false,
         "target": "/home/aj/.config/systemd/user/install-ohmyzsh.service"
+      },
+      {
+        "group": {
+          "name": "aj"
+        },
+        "path": "/home/aj/.config/systemd/user/default.target.wants/upgrade-all-distroboxes.timer",
+        "user": {
+          "name": "aj"
+        },
+        "hard": false,
+        "target": "/home/aj/.config/systemd/user/upgrade-all-distroboxes.timer"
       }
     ]
   },

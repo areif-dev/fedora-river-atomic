@@ -27,6 +27,8 @@ storage:
       mode: 0644
       contents: 
         inline: desktop
+
+    # User level unit to install Oh My ZSH 
     - path: /var/lib/systemd/install-ohmyzsh/aj
       mode: 0644
     - path: /home/aj/.config/systemd/user/install-ohmyzsh.service
@@ -47,6 +49,39 @@ storage:
       group:
         name: aj
 
+    # User level unit to automatically upgrade all distrobox containers 
+    - path: /home/aj/.config/systemd/user/upgrade-all-distroboxes.service
+      mode: 0644 
+      contents: 
+        inline: |
+          [Unit]
+          Description=Rebase all installed distroboxes on their latest images 
+          After=network-online.target 
+          [Service]
+          Type=oneshot
+          ExecStart=/usr/bin/upgrade-all-distroboxes
+      user:
+        name: aj
+      group:
+        name: aj
+    - path: /home/aj/.config/systemd/user/upgrade-all-distroboxes.timer 
+      mode: 0644 
+      contents: 
+        inline: |
+          [Unit]
+          Description=Daily run of upgrade-all-distroboxes 
+
+          [Timer]
+          OnCalendar=daily 
+          Persistent=true 
+
+          [Install]
+          WantedBy=timers.target
+      user:
+        name: aj
+      group:
+        name: aj
+
   links:
     - path: /home/aj/.config/systemd/user/default.target.wants/install-ohmyzsh.service
       user:
@@ -54,6 +89,13 @@ storage:
       group:
         name: aj
       target: /home/aj/.config/systemd/user/install-ohmyzsh.service
+      hard: false
+    - path: /home/aj/.config/systemd/user/default.target.wants/upgrade-all-distroboxes.timer
+      user:
+        name: aj
+      group:
+        name: aj
+      target: /home/aj/.config/systemd/user/upgrade-all-distroboxes.timer
       hard: false
 
   directories:
@@ -93,4 +135,3 @@ passwd:
       groups:
         - wheel
       shell: /usr/bin/zsh
-    
