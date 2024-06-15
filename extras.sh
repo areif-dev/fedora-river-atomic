@@ -14,9 +14,3 @@ else
     echo "Starship checksums do not match"
     exit 1
 fi
-
-# Install rebase-distrobox script
-curl -Lo "/usr/bin/rebase-distrobox" "https://raw.githubusercontent.com/areif-dev/distrobox-images/main/rebase-distrobox"
-
-# Install upgrade-all-distroboxes script 
-curl -Lo "/usr/bin/upgrade-all-distroboxes" "https://raw.githubusercontent.com/areif-dev/distrobox-images/main/upgrade-all-distroboxes"
