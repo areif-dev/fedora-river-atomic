@@ -17,3 +17,6 @@ fi
 
 # Install rebase-distrobox script
 curl -Lo "/usr/bin/rebase-distrobox" "https://raw.githubusercontent.com/areif-dev/distrobox-images/main/rebase-distrobox"
+
+# Install update-all-distroboxes script 
+curl -Lo "/usr/bin/update-all-distroboxes" "https://raw.githubusercontent.com/areif-dev/distrobox-images/main/update-all-distroboxes"
