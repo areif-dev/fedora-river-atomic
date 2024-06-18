@@ -109,6 +109,20 @@
           "source": "data:,%5BUnit%5D%0ADescription%3DDaily%20run%20of%20upgrade-all-distroboxes%20%0A%0A%5BTimer%5D%0AOnCalendar%3Ddaily%20%0APersistent%3Dtrue%20%0A%0A%5BInstall%5D%0AWantedBy%3Dtimers.target%0A"
         },
         "mode": 420
+      },
+      {
+        "group": {
+          "name": "aj"
+        },
+        "path": "/home/aj/bin/install.sh",
+        "user": {
+          "name": "aj"
+        },
+        "contents": {
+          "compression": "gzip",
+          "source": "data:;base64,H4sIAAAAAAAC/3SOPa4CMQyE+5wiT6/OuucMXCK7a3BEbK9sBwSnRxQgtqAaaTQ/3/8fDDeYmwDKNc/VKSW+rM1y2TIEb6DE94cTpGVYz+Woe7uJR+19csoUsfkBwOptOregMQ9HW1QCJaZF+VN6K1cPNAjV7l9L6cXx86aUITUCZcU1Gedip102PQMAAP//J/1biNUAAAA="
+        },
+        "mode": 493
       }
     ],
     "links": [

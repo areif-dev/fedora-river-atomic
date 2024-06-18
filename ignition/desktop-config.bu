@@ -42,6 +42,21 @@ storage:
       group:
         name: aj
 
+    - path: /home/aj/bin/install.sh
+      mode: 0755
+      contents:
+        inline: |
+          #!/usr/bin/env bash
+
+          mkdir -p /tmp/ohmyzsh/
+          curl -Lo /tmp/ohmyzsh/install.sh https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+          bash /tmp/ohmyzsh/install.sh --unattended
+          rm -rf /tmp/ohmyzsh
+      user:
+        name: aj
+      group:
+        name: aj
+
   links:
     - path: /home/aj/.config/systemd/user/default.target.wants/upgrade-all-distroboxes.timer
       user:
