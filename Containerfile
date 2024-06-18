@@ -58,6 +58,7 @@ RUN rpm-ostree install -y \
     bc \
     distrobox \
     firefox \
+    keepassxc \
     neovim \
     nvtop \
     openvpn \
