@@ -1,0 +1,142 @@
+{
+  "ignition": {
+    "version": "3.4.0"
+  },
+  "passwd": {
+    "users": [
+      {
+        "groups": [
+          "wheel"
+        ],
+        "homeDir": "/home/aj",
+        "name": "aj",
+        "passwordHash": "$y$j9T$uUATjvPVQbTyGTLlJdVf90$q1rDg3x85wDLI0MxdqHSSnnAWd7mIsQLfmAAo7XxCJ4",
+        "sshAuthorizedKeys": [
+          "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDilgi7appBeltfv/I74nLsBvTFQgSEHRVYSwH8l0GYaVeNW6nQfXh4NCt8gikHb64EOl0/wyaBdNbyzbINgjWsgZg8BM1MrdqbkMlieeylKjkN8G6Y1qLOJW366QtjpZ+MVQ99Jb9ZD9cK4HFXsf69AiWSzSQJl4wyecvjBfN6mFFyGeWt6kPLMwdWVHjL5vXNAnVK/1gwxBLuSRgI4Nfh5r/i9/6xPDNopQPL4GOMVZmPYCSOam0KWFk/jR7p4SK/1hEcUekaB7pWK/gA9SONMdhY72C6ShwySw5g1+zY7CA/sQg20UFcNyFxW5ey2QJGWddb0yuuC9ZbeakCS3z2TFb6coP70kDXnMxbhCwci4n6LMBh3C6akvVUhabVPqwudl2wCzoTtyIuNME16nuC+eGuymEgjSVYxi7ypVi+65vmkiLYq66WgUMArVwFiL2kyt8K+2+mn8wYyEn5aTtzPqVH0mPnqHU5PJFzKQBVKPRffRaYKql+AqmLJUE2e38= aj@fedora",
+          "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCX/qnMux9XfPgldoc2+8zIH0Z3kfcR2U43kNaLUctTS0qVCA4CUPUCJvEv1Qz+mQi9l4RvrF2MVrOjMeJjEHFCjtroUXaXXcv9uKSHbhlENFxYHliP0xc/vkQ5CbdOfSH1qfobdzmU5ygaDIfOCcfgeME8GRe1UB3MM8qRoslRnl8wpy8CW/Q9KSrMdAUbr+38oq0LxvOwC4UkjcSroAmtxyTLBnoqeQs45psNaDhqtgx7llCAIscSBBRFwuKs5c9AM2sLovdnnJpq5Lj93Wz1pNPuxhK7UQvz12BtJDdS3Avj/6+h9PjYwh9DXveDoazDXm6E33H0etScOv7K/REaArO9ntlOhFD2BnJzZly2Kg1DSzJsOi6vwU39OxdtC9/XdU2kVYjJ4rJ5uKkopp74aOzSNauM1j0YxbNScRUfGtMrYo9aJhQReVmk8xZ2eL1SORlXFF2xhM1AU1cw23g+oCmgqtVj/oDvNAlDc44yX8Vu4IahHKkLeWl0EzLvElU= u0_a316@localhost",
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMCIEmfuFpK+iYndUjUtxucA4Dect4YP6/m81Ia1xBim aj@laptop"
+        ],
+        "shell": "/usr/bin/bash"
+      }
+    ]
+  },
+  "storage": {
+    "directories": [
+      {
+        "group": {
+          "name": "aj"
+        },
+        "path": "/home/aj/.config",
+        "user": {
+          "name": "aj"
+        },
+        "mode": 493
+      },
+      {
+        "group": {
+          "name": "aj"
+        },
+        "path": "/home/aj/.config/systemd",
+        "user": {
+          "name": "aj"
+        },
+        "mode": 493
+      },
+      {
+        "group": {
+          "name": "aj"
+        },
+        "path": "/home/aj/.config/systemd/user",
+        "user": {
+          "name": "aj"
+        },
+        "mode": 493
+      },
+      {
+        "group": {
+          "name": "aj"
+        },
+        "path": "/home/aj/.config/systemd/user/default.target.wants",
+        "user": {
+          "name": "aj"
+        },
+        "mode": 493
+      },
+      {
+        "group": {
+          "name": "aj"
+        },
+        "path": "/home/aj/bin",
+        "user": {
+          "name": "aj"
+        },
+        "mode": 493
+      }
+    ],
+    "files": [
+      {
+        "path": "/etc/hostname",
+        "contents": {
+          "compression": "",
+          "source": "data:,laptop"
+        },
+        "mode": 420
+      },
+      {
+        "group": {
+          "name": "aj"
+        },
+        "path": "/home/aj/bin/install.sh",
+        "user": {
+          "name": "aj"
+        },
+        "contents": {
+          "compression": "gzip",
+          "source": "data:;base64,H4sIAAAAAAAC/3SOPa4CMQyE+5wiT6/OuucMXCK7a3BEbK9sBwSnRxQgtqAaaTQ/3/8fDDeYmwDKNc/VKSW+rM1y2TIEb6DE94cTpGVYz+Woe7uJR+19csoUsfkBwOptOregMQ9HW1QCJaZF+VN6K1cPNAjV7l9L6cXx86aUITUCZcU1Gedip102PQMAAP//J/1biNUAAAA="
+        },
+        "mode": 493
+      },
+      {
+        "group": {
+          "name": "aj"
+        },
+        "path": "/home/aj/.config/systemd/user/upgrade-all-distroboxes.service",
+        "user": {
+          "name": "aj"
+        },
+        "contents": {
+          "compression": "",
+          "source": "data:,%5BUnit%5D%0ADescription%3DRebase%20all%20installed%20distroboxes%20on%20their%20latest%20images%0AAfter%3Dnetwork-online.target%0A%5BService%5D%0AType%3Doneshot%0AExecStart%3D%2Fusr%2Fbin%2Fupgrade-all-distroboxes%0A"
+        },
+        "mode": 420
+      },
+      {
+        "group": {
+          "name": "aj"
+        },
+        "path": "/home/aj/.config/systemd/user/upgrade-all-distroboxes.timer",
+        "user": {
+          "name": "aj"
+        },
+        "contents": {
+          "compression": "",
+          "source": "data:,%5BUnit%5D%0ADescription%3DDaily%20run%20of%20upgrade-all-distroboxes%0A%0A%5BTimer%5D%0AOnCalendar%3Ddaily%0APersistent%3Dtrue%0A%0A%5BInstall%5D%0AWantedBy%3Dtimers.target%0A"
+        },
+        "mode": 420
+      }
+    ],
+    "links": [
+      {
+        "group": {
+          "name": "aj"
+        },
+        "path": "/home/aj/.config/systemd/user/default.target.wants/upgrade-all-distroboxes.timer",
+        "user": {
+          "name": "aj"
+        },
+        "hard": false,
+        "target": "/home/aj/.config/systemd/user/upgrade-all-distroboxes.timer"
+      }
+    ]
+  }
+}
