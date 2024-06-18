@@ -1,49 +1,24 @@
 ---
 variant: fcos
 version: 1.5.0
-systemd:
-  units:
-    # Auto rebase to new image
-    - name: rebase-custom.service
-      enabled: true
-      contents: |
-        [Unit]
-        Description=Fetch and deploy target image
-        # Only run on the firstboot
-        ConditionFirstBoot=true
-        After=network-online.target
-        [Service]
-        # This ordering is important
-        After=ignition-firstboot-complete.service
-        Type=oneshot
-        RemainAfterExit=yes
-        ExecStart=rpm-ostree rebase --reboot ostree-unverified-registry:ghcr.io/areif-dev/fedora-river-atomic/fedora-river-atomic:latest
-        [Install]
-        WantedBy=multi-user.target
 
 storage:
   files:
     - path: /etc/hostname 
       mode: 0644
       contents: 
-        inline: desktop
+        inline: laptop
 
-    # User level unit to install Oh My ZSH 
-    - path: /var/lib/systemd/install-ohmyzsh/aj
-      mode: 0644
-    - path: /home/aj/.config/systemd/user/install-ohmyzsh.service
-      mode: 0644
+    - path: /home/aj/bin/install.sh
+      mode: 0755
       contents:
         inline: |
-          [Unit]
-          Description=Installs Oh-My-ZSH for user
-          After=network-online.target
-          [Service]
-          Type=oneshot
-          ExecStart=/usr/bin/bash -c 'mkdir -p /tmp/ohmyzsh/ && curl -Lo /tmp/ohmyzsh/install.sh https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh && bash /tmp/ohmyzsh/install.sh --unattended && rm -rf /tmp/ohmyzsh'
-          ExecStartPost=systemctl --user disable install-ohmyzsh.service
-          [Install]
-          WantedBy=default.target
+          #!/usr/bin/env bash 
+
+          mkdir -p /tmp/ohmyzsh/ 
+          curl -Lo /tmp/ohmyzsh/install.sh https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh 
+          bash /tmp/ohmyzsh/install.sh --unattended 
+          rm -rf /tmp/ohmyzsh
       user:
         name: aj
       group:
@@ -134,4 +109,4 @@ passwd:
       home_dir: /home/aj
       groups:
         - wheel
-      shell: /usr/bin/zsh
+      shell: /usr/bin/bash
