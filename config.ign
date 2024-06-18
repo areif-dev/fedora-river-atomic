@@ -60,6 +60,16 @@
           "name": "aj"
         },
         "mode": 493
+      },
+      {
+        "group": {
+          "name": "aj"
+        },
+        "path": "/home/aj/bin",
+        "user": {
+          "name": "aj"
+        },
+        "mode": 493
       }
     ],
     "files": [
