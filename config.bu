@@ -123,6 +123,12 @@ storage:
         name: aj
       group:
         name: aj
+    - path: /home/aj/bin
+      mode: 0755
+      user:
+        name: aj
+      group:
+        name: aj
 
 passwd:
   users:
