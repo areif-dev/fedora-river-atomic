@@ -58,6 +58,8 @@ storage:
         name: aj
 
   links:
+    - path: /etc/localtime 
+      target: ../usr/share/zoneinfo/America/New_York
     - path: /home/aj/.config/systemd/user/default.target.wants/upgrade-all-distroboxes.timer
       user:
         name: aj
