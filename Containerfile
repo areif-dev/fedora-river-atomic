@@ -123,8 +123,8 @@ RUN /tmp/extras/extras.sh && \
     ostree container commit
 
 # Enable services
-RUN systemctl enable libvirtd && \
-    systemctl enable cockpit && \
+RUN systemctl enable cockpit && \
+    # systemctl enable libvirtd && \
     systemctl enable plocate-updatedb  && \
     mkdir -p /var/lib/plocate && \
     systemctl enable tailscaled && \
