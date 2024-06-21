@@ -17,6 +17,7 @@ RUN rpm-ostree install -y \
     cockpit-ostree \
     cockpit-podman \
     cockpit-system \
+    cockpit-ws \
     dbus \
     dbus-daemon \
     dbus-tools \
@@ -123,7 +124,7 @@ RUN /tmp/extras/extras.sh && \
     ostree container commit
 
 # Enable services
-RUN systemctl enable cockpit && \
+RUN systemctl enable cockpit.socket && \
     # systemctl enable libvirtd && \
     systemctl enable plocate-updatedb  && \
     mkdir -p /var/lib/plocate && \
