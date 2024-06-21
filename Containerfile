@@ -82,18 +82,18 @@ RUN rpm-ostree install -y \
     ostree container commit
 
 # Virtualization packages 
-RUN rpm-ostree install -y \
-    virt-install \
-    libvirt \
-    libvirt-daemon-config-network \
-    libvirt-daemon-kvm \
-    qemu-kvm \
-    virt-manager \
-    virt-viewer \
-    libguestfs-tools \
-    python3-libguestfs \
-    virt-top && \
-    ostree container commit
+# RUN rpm-ostree install -y \
+#     virt-install \
+#     libvirt \
+#     libvirt-daemon-config-network \
+#     libvirt-daemon-kvm \
+#     qemu-kvm \
+#     virt-manager \
+#     virt-viewer \
+#     libguestfs-tools \
+#     python3-libguestfs \
+#     virt-top && \
+#     ostree container commit
 
 # Wifi packages 
 RUN rpm-ostree install -y --allow-inactive \
