@@ -21,8 +21,6 @@ on:
       - 'README.md'
       - 'LICENSE'
       - 'screenshots/'
-  schedule:
-    - cron: '0 10 * * *'  # Build at 10:00 UTC. A few hours after base fedora is updated
   workflow_dispatch:
 
 concurrency:

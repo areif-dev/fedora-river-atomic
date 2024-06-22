@@ -1,3 +1,7 @@
+# !! Currently Unmaintained !!
+
+Please see [fedora-river-bootc](https://github.com/areif-dev/fedora-river-bootc) for my current container based desktop efforts 
+
 # Fedora River Atomic 
 
 An opinionated image based on Fedora CoreOS featuring the River Wayland compositor.
