@@ -27,6 +27,7 @@ RUN rpm-ostree install -y \
     grim \
     jmtpfs \
     lxpolkit \
+    man-db \
     man-pages \
     nvtop \
     openssh \
