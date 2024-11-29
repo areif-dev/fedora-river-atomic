@@ -1,8 +1,7 @@
 FROM quay.io/fedora/fedora-coreos:testing
 
 # Update packages that commonly cause build issues
-RUN --mount=type=cache,dst=/var/cache/rpm-ostree \
-    rpm-ostree  override replace \
+RUN rpm-ostree override replace \
     --experimental \
     --from repo=updates \
         nfs-utils-coreos \
