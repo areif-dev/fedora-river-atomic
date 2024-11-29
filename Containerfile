@@ -1,7 +1,16 @@
 FROM quay.io/fedora/fedora-coreos:testing
 
+# Update packages that commonly cause build issues
+RUN --mount=type=cache,dst=/var/cache/rpm-ostree \
+    rpm-ostree  override replace \
+    --experimental \
+    --from repo=updates \
+        nfs-utils-coreos \
+        || true && \
+    ostree container commit
+
 # Install extra repositories 
-RUN rpm-ostree install -y \
+RUN rpm-ostree install -y --allow-inactive \
     https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
     https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm && \
     curl -Lo /etc/yum.repos.d/_copr_areif-dev-river-bsp-layout.repo https://copr.fedorainfracloud.org/coprs/areif-dev/river-bsp-layout/repo/fedora-"$(rpm -E %fedora)"/areif-dev-river-bsp-layout-fedora-"$(rpm -E %fedora)".repo && \
@@ -9,7 +18,7 @@ RUN rpm-ostree install -y \
     ostree container commit
 
 # System 
-RUN rpm-ostree install -y \
+RUN rpm-ostree install -y --allow-inactive \
     bluez \
     bluez-tools \
     cockpit \
@@ -22,6 +31,7 @@ RUN rpm-ostree install -y \
     dbus-daemon \
     dbus-tools \
     dunst \
+    flatpak \
     gnome-keyring \
     gvfs-mtp \
     grim \
@@ -55,12 +65,11 @@ RUN rpm-ostree install -y \
     ostree container commit
 
 # Applications 
-RUN rpm-ostree install -y \
+RUN rpm-ostree install -y --allow-inactive \
     alacritty \
     bc \
     distrobox \
     firefox \
-    keepassxc \
     neovim \
     nvtop \
     openvpn \
@@ -77,14 +86,14 @@ RUN rpm-ostree install -y \
     ostree container commit
 
 # Fonts 
-RUN rpm-ostree install -y \
+RUN rpm-ostree install -y --allow-inactive \
     cascadia-code-fonts \
     fontawesome-fonts \
     google-noto-emoji-fonts  && \
     ostree container commit
 
 # Virtualization packages 
-RUN rpm-ostree install -y \
+RUN rpm-ostree install -y --allow-inactive \
     libvirt \
     libvirt-daemon-config-network \
     libvirt-daemon-kvm \
