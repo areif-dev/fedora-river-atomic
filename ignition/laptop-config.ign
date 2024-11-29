@@ -91,7 +91,7 @@
           "name": "aj"
         },
         "contents": {
-          "source": "https://raw.githubusercontent.com/areif-dev/fedora-river-atomic/refs/heads/ignition/layout.sh"
+          "source": "https://raw.githubusercontent.com/areif-dev/fedora-river-atomic/refs/heads/ignition/layers.sh"
         },
         "mode": 493
       },

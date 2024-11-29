@@ -34,7 +34,7 @@ storage:
     - path: /usr/bin/layers.sh 
       mode: 0755 
       contents: 
-        source: "https://raw.githubusercontent.com/areif-dev/fedora-river-atomic/refs/heads/ignition/layout.sh"
+        source: "https://raw.githubusercontent.com/areif-dev/fedora-river-atomic/refs/heads/ignition/layers.sh"
       user:
         name: aj
       group:
