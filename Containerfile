@@ -130,7 +130,9 @@ RUN /tmp/extras/extras.sh && \
     rm -rf /tmp/extras && \
     ostree container commit
 
-RUN flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+# Some program specific configs 
+RUN flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo && \
+    xdg-mime default thunar.desktop inode/directory
 
 # Enable services
 RUN systemctl enable libvirtd && \
