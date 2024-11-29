@@ -33,6 +33,10 @@ storage:
 
     - path: /tmp/layers.sh 
       mode: 0755 
+      user:
+        name: aj
+      group:
+        name: aj
       contents: 
         inline: |
           #!/usr/bin/env bash 
@@ -108,11 +112,6 @@ storage:
               unzip \
               vlc  \
               zip
-
-          user:
-            name: aj
-          group:
-            name: aj
 
     - path: /home/aj/bin/install.sh
       mode: 0755
