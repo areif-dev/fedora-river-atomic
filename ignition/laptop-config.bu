@@ -2,12 +2,43 @@
 variant: fcos
 version: 1.5.0
 
+systemd: 
+  units: 
+    - name: add-layers.service 
+      enabled: true 
+      contents: | 
+        [Unit]
+        Description=Layer packages to make a more comfortable desktop
+        Wants=network-online.target
+        After=network-online.target 
+        Before=zincati.service 
+        ConditionPathExists=!/var/lib/%N.stamp 
+
+        [Service]
+        Type=oneshot 
+        RemainAfterExit=yes 
+        ExecStart=/usr/bin/layers.sh
+        ExecStart=/bin/touch /var/lib/%N.stamp 
+        ExecStart=/bin/systemctl --no-block reboot 
+
+        [Install]
+        WantedBy=multi-user.target
+
 storage:
   files:
     - path: /etc/hostname
       mode: 0644
       contents:
         inline: laptop
+
+    - path: /usr/bin/layers.sh 
+      mode: 0755 
+      contents: 
+        source: "https://raw.githubusercontent.com/areif-dev/fedora-river-atomic/refs/heads/main/layout.sh"
+      user:
+        name: aj
+      group:
+        name: aj
 
     - path: /home/aj/bin/install.sh
       mode: 0755
@@ -24,49 +55,9 @@ storage:
       group:
         name: aj
 
-    # User level unit to automatically upgrade all distrobox containers
-    - path: /home/aj/.config/systemd/user/upgrade-all-distroboxes.service
-      mode: 0644
-      contents:
-        inline: |
-          [Unit]
-          Description=Rebase all installed distroboxes on their latest images
-          After=network-online.target
-          [Service]
-          Type=oneshot
-          ExecStart=/usr/bin/upgrade-all-distroboxes
-      user:
-        name: aj
-      group:
-        name: aj
-    - path: /home/aj/.config/systemd/user/upgrade-all-distroboxes.timer
-      mode: 0644
-      contents:
-        inline: |
-          [Unit]
-          Description=Daily run of upgrade-all-distroboxes
-
-          [Timer]
-          OnCalendar=daily
-          Persistent=true
-
-          [Install]
-          WantedBy=timers.target
-      user:
-        name: aj
-      group:
-        name: aj
-
   links:
     - path: /etc/localtime 
       target: ../usr/share/zoneinfo/America/New_York
-    - path: /home/aj/.config/systemd/user/default.target.wants/upgrade-all-distroboxes.timer
-      user:
-        name: aj
-      group:
-        name: aj
-      target: /home/aj/.config/systemd/user/upgrade-all-distroboxes.timer
-      hard: false
 
   directories:
     - path: /home/aj/.config
