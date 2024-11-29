@@ -83,10 +83,16 @@
         "mode": 420
       },
       {
+        "group": {
+          "name": "aj"
+        },
         "path": "/tmp/layers.sh",
+        "user": {
+          "name": "aj"
+        },
         "contents": {
           "compression": "gzip",
-          "source": "data:;base64,H4sIAAAAAAAC/5RUsY7kNgzt5yuUu+SQFBzj2u1SpAiQLk2KAAdapj28kUWBlDwz+/WBZy2dZ3MH7HZ6jxT5SD37409dMe16jh3FxfVoJ3c4fHR/RssYgqNrVnRKSYyzKJO5g6YZxLISOd7S4OYAMAS5AEf0mRdy/x6cc+6Uc7KnrptZVdSOmuaxGEs8ik7dqETdSIModi0CKwtKgdAIfv5V0+zgD/fLS95vxyio/rRWelOPKPH7bbbA2zp9+rQ180WDg7/EdZR9dyvz8b6d49B98ZL0CyrxCAMtoLyQQm8JAt6k5HtiE7smH18acRwVfZAy3AWvEetane51nW6ts40DH/6n+kP3Ywnw41sv6t4wZkYO5jHQ4zzpPNnxW8zL3FnGPrTFP95bTfb3zTLN7/NTHwo978+QRYJV1eLPifMjghn9iSO9Sqo9H8kkw4zxFWl3oa/IS6039GV/hAFplrhn9hKHEq0KnKLMBGe6KcepcstoMOdUoXJt/HXOaaxlwjVJOLdRZ4ww9DuQcGoDS6JodnpAYUMJE2sxYC8R8onmupDEiS6sDQbxmBva976bbH/eGa7SMjJc8BYwDhtlF7z10w7wEGgHg/jzBptzNrzexNrxEsAHTr2gDo1SUIxDS2GlFMrcN5nXYYKB7JwlQRLNGOAS9sFipDCw1hVeRSe4fv4MRrpO+M/jMM9tu892AixZrEwTWWaJtlr995QCe7zjd/5BMaBXzvlWXe+rk9iySi/XDY+sNDZ0Jkpodq3ZkWRpVopLlrTzw5Ji88NSvMSs0hwS8Ebqc8WKcdq9d5qUaql8KrE9zAuA9Q/KC0EKZeL4GFskfPvYSnzmWmgJ3tWFcjoc1ud4OjgXcaYnh18Pk0pJD8x/AQAA//+x/gHcygYAAA=="
+          "source": "data:;base64,H4sIAAAAAAAC/5RUMY/kNg/t51fou/tySAqOcW26FCkCpEuTIsCBlmkPM7IokJJnvL8+8Kyl82xywF6nR1J8j/SzPv6vK6Zdz7GjuLge7eJOp4/ut2gZQ3B0z4pOKYlxFmUyd9I0g1hWIsd7GawOAEOQG3BEn3kh99fJOecuOSf7uetmVhW1s6Z5LMYSz6JTNypRN9Igil3LwBYFpUBoBP//UdPs4Ff3w2vdT+coqP6ydXoXR5T43zR74n1Mnz7tZL5ocPC7uI6y79Yynx/bOQ/dFy9Jv6ASjzDQAsoLKfSWIOAqJT8Km9it+PxKxHFU9EHK8BC8Zaxrfbq3fbqtzz4OfPiX6g/dtyXAt2+9qnvHmBk5mMdAz/Ok62Tnrzkvc2cZ+9AW/3xvM9kfq2Wav89PfSj0cjxDFglWVYu/Js7PCGb0F470pqhyPgeTDDPGN0F7CH0TvNV+Q1+ORxiQZonHyFHiUKJVgVOUmeBKq3KcamwZDeacKlSuxH/POY21TbgnCdc26owRhv4AEk5tYEkUzS5PKOwoYWItBuwlQr7QXBeSONGNtcEgHnNDR+6HyY7ng+FqWEaGG64B47CH7IZrPx0AD4EOMIi/7rA5Z8fbTayMtwA+cOoFdWghBcU4tBJWSqHMfZN5HyYYyK5ZEiTRjAFu4ZgsRgoDa13hXXSC++fPYKTbhH8+D/PStvtiF8CSxco0kWWWaJvVf0kpsMcH/s4XFAN65ZzX6npfncSWVXq573hkpbGhK1FCs3utjiRLs1JcsqSDH5YUmx+W4iVmleaQgCupzxUrxunwvdOkVFvlS4ntw7wC2F5QXghSKBPH59wi4evPVuIL10ZL8K4ulNPpnwAAAP//BzzxGKYGAAA="
         },
         "mode": 493
       },
