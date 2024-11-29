@@ -69,6 +69,7 @@ RUN rpm-ostree install -y --allow-inactive \
     bc \
     distrobox \
     firefox \
+    keepassxc \
     neovim \
     nvtop \
     openvpn \
@@ -129,9 +130,10 @@ RUN /tmp/extras/extras.sh && \
     rm -rf /tmp/extras && \
     ostree container commit
 
+RUN flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+
 # Enable services
-RUN systemctl enable cockpit.socket && \
-    # systemctl enable libvirtd && \
+RUN systemctl enable libvirtd && \
     systemctl enable plocate-updatedb  && \
     mkdir -p /var/lib/plocate && \
     systemctl enable tailscaled && \
