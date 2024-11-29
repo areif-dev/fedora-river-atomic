@@ -17,7 +17,7 @@ systemd:
         [Service]
         Type=oneshot 
         RemainAfterExit=yes 
-        ExecStart=/usr/bin/layers.sh
+        ExecStart=/usr/bin/bash /tmp/layers.sh
         ExecStart=/bin/touch /var/lib/%N.stamp 
         ExecStart=/bin/systemctl --no-block reboot 
 
@@ -31,7 +31,7 @@ storage:
       contents:
         inline: laptop
 
-    - path: /usr/bin/layers.sh 
+    - path: /tmp/layers.sh 
       mode: 0755 
       contents: 
         inline: |

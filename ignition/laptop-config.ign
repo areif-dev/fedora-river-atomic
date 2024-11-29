@@ -83,7 +83,7 @@
         "mode": 420
       },
       {
-        "path": "/usr/bin/layers.sh",
+        "path": "/tmp/layers.sh",
         "contents": {
           "compression": "gzip",
           "source": "data:;base64,H4sIAAAAAAAC/5RUsY7kNgzt5yuUu+SQFBzj2u1SpAiQLk2KAAdapj28kUWBlDwz+/WBZy2dZ3MH7HZ6jxT5SD37409dMe16jh3FxfVoJ3c4fHR/RssYgqNrVnRKSYyzKJO5g6YZxLISOd7S4OYAMAS5AEf0mRdy/x6cc+6Uc7KnrptZVdSOmuaxGEs8ik7dqETdSIModi0CKwtKgdAIfv5V0+zgD/fLS95vxyio/rRWelOPKPH7bbbA2zp9+rQ180WDg7/EdZR9dyvz8b6d49B98ZL0CyrxCAMtoLyQQm8JAt6k5HtiE7smH18acRwVfZAy3AWvEetane51nW6ts40DH/6n+kP3Ywnw41sv6t4wZkYO5jHQ4zzpPNnxW8zL3FnGPrTFP95bTfb3zTLN7/NTHwo978+QRYJV1eLPifMjghn9iSO9Sqo9H8kkw4zxFWl3oa/IS6039GV/hAFplrhn9hKHEq0KnKLMBGe6KcepcstoMOdUoXJt/HXOaaxlwjVJOLdRZ4ww9DuQcGoDS6JodnpAYUMJE2sxYC8R8onmupDEiS6sDQbxmBva976bbH/eGa7SMjJc8BYwDhtlF7z10w7wEGgHg/jzBptzNrzexNrxEsAHTr2gDo1SUIxDS2GlFMrcN5nXYYKB7JwlQRLNGOAS9sFipDCw1hVeRSe4fv4MRrpO+M/jMM9tu892AixZrEwTWWaJtlr995QCe7zjd/5BMaBXzvlWXe+rk9iySi/XDY+sNDZ0Jkpodq3ZkWRpVopLlrTzw5Ji88NSvMSs0hwS8Ebqc8WKcdq9d5qUaql8KrE9zAuA9Q/KC0EKZeL4GFskfPvYSnzmWmgJ3tWFcjoc1ud4OjgXcaYnh18Pk0pJD8x/AQAA//+x/gHcygYAAA=="
@@ -115,7 +115,7 @@
   "systemd": {
     "units": [
       {
-        "contents": "[Unit]\nDescription=Layer packages to make a more comfortable desktop\nWants=network-online.target\nAfter=network-online.target \nBefore=zincati.service \nConditionPathExists=!/var/lib/%N.stamp \n\n[Service]\nType=oneshot \nRemainAfterExit=yes \nExecStart=/usr/bin/layers.sh\nExecStart=/bin/touch /var/lib/%N.stamp \nExecStart=/bin/systemctl --no-block reboot \n\n[Install]\nWantedBy=multi-user.target\n",
+        "contents": "[Unit]\nDescription=Layer packages to make a more comfortable desktop\nWants=network-online.target\nAfter=network-online.target \nBefore=zincati.service \nConditionPathExists=!/var/lib/%N.stamp \n\n[Service]\nType=oneshot \nRemainAfterExit=yes \nExecStart=/usr/bin/bash /tmp/layers.sh\nExecStart=/bin/touch /var/lib/%N.stamp \nExecStart=/bin/systemctl --no-block reboot \n\n[Install]\nWantedBy=multi-user.target\n",
         "enabled": true,
         "name": "add-layers.service"
       }
