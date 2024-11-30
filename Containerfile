@@ -34,6 +34,7 @@ RUN rpm-ostree install -y --allow-inactive \
     gnome-keyring \
     gvfs-mtp \
     grim \
+    hyprland \
     jmtpfs \
     lxpolkit \
     man-db \
