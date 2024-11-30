@@ -32,7 +32,7 @@ storage:
           Description=Daily run of upgrade-all-distroboxes
 
           [Timer]
-          OnCalendar=daily
+          OnCalendar=weekly
           Persistent=true
 
           [Install]
