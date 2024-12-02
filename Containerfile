@@ -70,6 +70,7 @@ RUN rpm-ostree install -y --allow-inactive \
     bc \
     distrobox \
     firefox \
+    htop \
     keepassxc \
     neovim \
     nvtop \
