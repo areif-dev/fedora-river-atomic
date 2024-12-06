@@ -52,6 +52,7 @@ RUN rpm-ostree install -y --allow-inactive \
     swaybg \
     swayidle \
     swaylock \
+    syncthing \
     tailscale \
     waybar \
     wl-clipboard \
