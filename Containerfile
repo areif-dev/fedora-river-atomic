@@ -59,6 +59,7 @@ RUN rpm-ostree install -y --allow-inactive \
     wlr-randr \
     wireplumber \
     xdg-desktop-portal-wlr \
+    xdg-desktop-portal-hyprland \
     xdg-user-dirs \
     xorg-x11-server-Xwayland \
     zsh \
