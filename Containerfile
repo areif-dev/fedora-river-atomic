@@ -45,6 +45,8 @@ RUN rpm-ostree install -y --allow-inactive \
     papirus-icon-theme \
     pipewire \
     plocate \
+    podman \
+    podman-compose \
     polkit \
     river \
     river-bsp-layout \
