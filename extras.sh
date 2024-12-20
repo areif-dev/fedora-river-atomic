@@ -27,4 +27,4 @@ mkdir -p /usr/share/applications
 cp /tmp/extras/nwg-look/stuff/main.glade /usr/share/nwg-look/
 cp /tmp/extras/nwg-look/langs/* /usr/share/nwg-look/langs/
 cp /tmp/extras/nwg-look/stuff/nwg-look.desktop /usr/share/applications/
-cp /tmp/extras/nwg-look/bin/nwg-look /usr/bin
+cp /tmp/extras/nwg-look/nwg-look /usr/bin
