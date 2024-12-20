@@ -84,6 +84,7 @@ RUN rpm-ostree install -y --allow-inactive \
     thunar \
     thunar-archive-plugin \
     thunar-volman \
+    thunderbird \
     unzip \
     vlc  \
     zip && \
