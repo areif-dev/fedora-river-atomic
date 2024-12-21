@@ -39,7 +39,6 @@ RUN rpm-ostree install -y --allow-inactive \
     lxpolkit \
     man-db \
     man-pages \
-    nvtop \
     openssh \
     openssl \
     papirus-icon-theme \
