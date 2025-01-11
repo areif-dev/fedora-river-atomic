@@ -26,6 +26,7 @@ RUN rpm-ostree install -y --allow-inactive \
     cockpit-podman \
     cockpit-system \
     cockpit-ws \
+    cups \
     dbus \
     dbus-daemon \
     dbus-tools \
@@ -54,6 +55,7 @@ RUN rpm-ostree install -y --allow-inactive \
     swayidle \
     swaylock \
     syncthing \
+    system-config-printer \
     tailscale \
     waybar \
     wl-clipboard \
