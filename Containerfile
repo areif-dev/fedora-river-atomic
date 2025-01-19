@@ -74,6 +74,7 @@ RUN rpm-ostree install -y --allow-inactive \
     alacritty \
     bc \
     distrobox \
+    ffmpeg \
     firefox \
     htop \
     keepassxc \
