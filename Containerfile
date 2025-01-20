@@ -14,6 +14,7 @@ RUN rpm-ostree install -y --allow-inactive \
     https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm && \
     curl -Lo /etc/yum.repos.d/_copr_areif-dev-river-bsp-layout.repo https://copr.fedorainfracloud.org/coprs/areif-dev/river-bsp-layout/repo/fedora-"$(rpm -E %fedora)"/areif-dev-river-bsp-layout-fedora-"$(rpm -E %fedora)".repo && \
     curl -Lo /etc/yum.repos.d/tailscale.repo https://pkgs.tailscale.com/stable/fedora/tailscale.repo && \
+    curl -Lo /etc/yum.repos.d/mullvad.repo https://repository.mullvad.net/rpm/stable/mullvad.repo && \
     ostree container commit
 
 # System 
@@ -78,6 +79,7 @@ RUN rpm-ostree install -y --allow-inactive \
     firefox \
     htop \
     keepassxc \
+    mullvad-vpn \
     neovim \
     nvtop \
     openvpn \
