@@ -101,17 +101,6 @@ RUN rpm-ostree install -y --allow-inactive \
     google-noto-emoji-fonts  && \
     ostree container commit
 
-# Virtualization packages 
-RUN rpm-ostree install -y --allow-inactive \
-    libvirt \
-    libvirt-daemon-config-network \
-    libvirt-daemon-kvm \
-    qemu-kvm \
-    virt-manager \
-    libguestfs-tools \
-    python3-libguestfs && \
-    ostree container commit
-
 # Wifi packages 
 RUN rpm-ostree install -y --allow-inactive \
     NetworkManager       \
@@ -144,8 +133,7 @@ RUN flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flath
     xdg-mime default thunar.desktop inode/directory
 
 # Enable services
-RUN systemctl enable libvirtd && \
-    systemctl enable plocate-updatedb  && \
+RUN systemctl enable plocate-updatedb  && \
     mkdir -p /var/lib/plocate && \
     systemctl enable tailscaled && \
     ostree container commit
