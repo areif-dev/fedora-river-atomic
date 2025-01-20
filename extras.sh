@@ -31,6 +31,3 @@ cp /tmp/extras/nwg-look/stuff/nwg-look.desktop /usr/share/applications/
 cp /tmp/extras/nwg-look/stuff/nwg-look.svg /usr/share/pixmaps/
 cp /tmp/extras/nwg-look/nwg-look /usr/bin
 
-# Install Mullvad VPN
-curl -Lo "/tmp/extras/mullvad.rpm" "https://mullvad.net/download/app/rpm/latest"
-rpm-ostree install -y "/tmp/extras/mullvad.rpm"
