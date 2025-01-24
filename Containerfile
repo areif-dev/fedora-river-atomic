@@ -76,6 +76,7 @@ RUN rpm-ostree install -y --allow-inactive \
     distrobox \
     ffmpeg \
     firefox \
+    gnome-boxes \
     htop \
     keepassxc \
     neovim \
