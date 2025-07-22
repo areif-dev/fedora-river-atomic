@@ -1,6 +1,7 @@
 #!/bin/bash
 
 export system=(
+    '@development-tools' 
     bluez
     bluez-tools
     cockpit
