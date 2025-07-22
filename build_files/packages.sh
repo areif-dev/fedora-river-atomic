@@ -56,6 +56,8 @@ export apps=(
     distrobox
     ffmpeg
     firefox
+    hledger
+    hledger-web
     htop
     keepassxc
     neovim
@@ -65,6 +67,7 @@ export apps=(
     playerctl
     ranger
     ripgrep
+    steam
     thunar
     thunar-archive-plugin
     thunar-volman
