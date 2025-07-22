@@ -34,6 +34,8 @@ export system=(
     podman-compose
     polkit
     rofi-wayland
+    rustup 
+    rust-analyzer
     swaybg
     swayidle
     swaylock
@@ -57,10 +59,13 @@ export apps=(
     distrobox
     ffmpeg
     firefox
+    gamemode
+    gimp
     hledger
     hledger-web
     htop
     keepassxc
+    libreoffice
     neovim
     nvtop
     openvpn
