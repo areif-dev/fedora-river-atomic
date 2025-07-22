@@ -35,7 +35,7 @@ jobs:
     env:
       platforms: 'linux/amd64'
       registry: 'ghcr.io/areif-dev/fedora-river-atomic'
-      base_version: 41
+      base_version: 42
     steps:
       - name: Generate tags
         id: generate-tags
