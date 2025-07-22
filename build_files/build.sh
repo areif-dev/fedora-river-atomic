@@ -19,9 +19,6 @@ curl -Lo /etc/yum.repos.d/tailscale.repo https://pkgs.tailscale.com/stable/fedor
 source /ctx/packages.sh
 dnf5 install -y "${all_packages[@]}"
 
-# Install extra software 
-source /ctx/extras.sh
-
 # Enable services 
 # systemctl enable libvirtd 
 # systemctl enable tailscaled 
