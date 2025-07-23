@@ -4,11 +4,6 @@ export system=(
     '@development-tools' 
     bluez
     bluez-tools
-    cockpit
-    cockpit-machines
-    cockpit-podman
-    cockpit-system
-    cockpit-ws
     cups
     dbus
     dbus-daemon
