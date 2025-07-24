@@ -20,8 +20,8 @@ source /ctx/packages.sh
 dnf5 install -y "${all_packages[@]}"
 
 # Enable services 
-# systemctl enable libvirtd 
-# systemctl enable tailscaled 
+systemctl enable libvirtd 
+systemctl enable tailscaled 
 
 # Cleanup 
 dnf5 clean all 
