@@ -4,6 +4,7 @@ export system=(
     '@development-tools' 
     bluez
     bluez-tools
+    cryptsetup
     cups
     dbus
     dbus-daemon
