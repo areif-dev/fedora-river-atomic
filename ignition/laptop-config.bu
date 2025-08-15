@@ -36,39 +36,6 @@ storage:
       contents:
         inline: laptop
 
-    # User level unit to automatically upgrade all distrobox containers
-    - path: /home/aj/.config/systemd/user/upgrade-all-distroboxes.service
-      mode: 0644
-      contents:
-        inline: |
-          [Unit]
-          Description=Rebase all installed distroboxes on their latest images
-          After=network-online.target
-          [Service]
-          Type=oneshot
-          ExecStart=/usr/bin/upgrade-all-distroboxes
-      user:
-        name: aj
-      group:
-        name: aj
-    - path: /home/aj/.config/systemd/user/upgrade-all-distroboxes.timer
-      mode: 0644
-      contents:
-        inline: |
-          [Unit]
-          Description=Daily run of upgrade-all-distroboxes
-
-          [Timer]
-          OnCalendar=weekly
-          Persistent=true
-
-          [Install]
-          WantedBy=timers.target
-      user:
-        name: aj
-      group:
-        name: aj
-
   links:
     - path: /etc/localtime 
       target: ../usr/share/zoneinfo/America/New_York
@@ -79,38 +46,6 @@ storage:
         name: aj
       target: /home/aj/.config/systemd/user/upgrade-all-distroboxes.timer
       hard: false
-
-  directories:
-    - path: /home/aj/.config
-      mode: 0755
-      user:
-        name: aj
-      group:
-        name: aj
-    - path: /home/aj/.config/systemd
-      mode: 0755
-      user:
-        name: aj
-      group:
-        name: aj
-    - path: /home/aj/.config/systemd/user
-      mode: 0755
-      user:
-        name: aj
-      group:
-        name: aj
-    - path: /home/aj/.config/systemd/user/default.target.wants
-      mode: 0755
-      user:
-        name: aj
-      group:
-        name: aj
-    - path: /home/aj/bin
-      mode: 0755
-      user:
-        name: aj
-      group:
-        name: aj
 
 passwd:
   users:
