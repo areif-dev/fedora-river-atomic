@@ -8,8 +8,6 @@ sed -i 's/.*fastestmirror=.*//g' /etc/dnf/dnf.conf && \
 echo 'max_parallel_downloads=15' | tee -a /etc/dnf/dnf.conf && \
 echo 'fastestmirror=True' | tee -a /etc/dnf/dnf.conf
 
-dnf5 update -y
-
 # Install Extra Repos
 dnf5 install -y \
 https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
