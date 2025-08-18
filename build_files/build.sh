@@ -20,6 +20,8 @@ dnf5 install -y "${all_packages[@]}"
 # Enable services 
 systemctl enable libvirtd 
 systemctl enable tailscaled 
+systemctl disable avahi-daemon.socket
+systemctl disable avahi-daemon.service
 
 # Cleanup 
 dnf5 clean all 
