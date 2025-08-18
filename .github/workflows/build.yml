@@ -22,7 +22,7 @@ on:
       - 'LICENSE'
       - 'screenshots/'
   schedule:
-    - cron: '0 10 * * 0'  # Build at 10:00 UTC. A few hours after base fedora is updated
+    - cron: '0 10 * * 0,3'  # Build at 10:00 UTC every Sunday and Wednesday. This is a few hours after base fedora images are usually updated
   workflow_dispatch:
 
 concurrency:
