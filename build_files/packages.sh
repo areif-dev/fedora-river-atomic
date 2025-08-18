@@ -31,7 +31,6 @@ export system=(
     polkit
     rofi-wayland
     rustup 
-    rust-analyzer
     swaybg
     swayidle
     swaylock
