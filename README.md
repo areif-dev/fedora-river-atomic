@@ -1,23 +1,18 @@
-# !! Currently Unmaintained !!
+# Terrafirma
 
-Please see [fedora-river-bootc](https://github.com/areif-dev/fedora-river-bootc) for my current container based desktop efforts 
-
-# Fedora River Atomic 
-
-An opinionated image based on Fedora CoreOS featuring the River Wayland compositor.
+An opinionated image based on Fedora CoreOS featuring the Hyprland compositor.
 
 ![river-bsp-layout demo](./screenshots/main.png "Demo")
 
 ## Features 
 
-* River: Wayland compositor 
+* Hyprland: Wayland compositor 
 * Waybar: Status bar 
 * Rofi-Wayland: Dmenu compatible launcher 
 * Thunar: File manager 
 * Firefox: Browser
 * Distrobox: Container management
 * Podman: Container management 
-* Cockpit: Web administration
 * Zsh: Shell 
 * Starship: Shell prompt
 
