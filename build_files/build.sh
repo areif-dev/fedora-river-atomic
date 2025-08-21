@@ -19,7 +19,7 @@ source /ctx/packages.sh
 dnf5 install -y "${all_packages[@]}"
 
 # Install custom systemd service files
-mv /ctx/systemd/* /etc/systemd/system/
+cp -r /ctx/systemd/* /etc/systemd/system/
 
 # Enable/Disable services 
 systemctl enable libvirtd 
