@@ -14,14 +14,23 @@ https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedor
 https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm && \
 curl -Lo /etc/yum.repos.d/tailscale.repo https://pkgs.tailscale.com/stable/fedora/tailscale.repo 
 
+# Install packages
 source /ctx/packages.sh
 dnf5 install -y "${all_packages[@]}"
 
-# Enable services 
+# Install custom systemd service files
+mv /ctx/systemd/* /etc/systemd/system/
+
+# Enable/Disable services 
 systemctl enable libvirtd 
 systemctl enable tailscaled 
 systemctl disable avahi-daemon.socket
 systemctl disable avahi-daemon.service
+systemctl disable zincati.timer
+systemctl enable bootc-update.timer
+
+# Remove unwanted software 
+dnf5 remove -y zincati  # Replace with lighter custom solution
 
 # Cleanup 
 dnf5 clean all 

@@ -1,0 +1,9 @@
+[Unit]
+Description=Run bootc update every Monday and Thursday afternoon
+
+[Timer]
+OnCalendar=Mon,Thu 14:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target
