@@ -51,6 +51,7 @@ export system=(
 export apps=(
     alacritty
     bc
+    discord
     distrobox
     ffmpeg
     firefox
