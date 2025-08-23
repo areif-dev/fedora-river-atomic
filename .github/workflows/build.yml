@@ -34,7 +34,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       platforms: 'linux/amd64'
-      registry: 'ghcr.io/areif-dev/fedora-river-atomic'
+      registry: 'ghcr.io/areif-dev/terrafirma'
       base_version: 42
     steps:
       - name: Free disk space 
@@ -69,7 +69,7 @@ jobs:
         with:
           platforms: ${{ env.platforms }}
           context: ./
-          image: fedora-river-atomic
+          image: terrafirma
           tags: | 
             ${{ steps.generate-tags.outputs.alias_tags }}
           containerfiles: ./Containerfile
@@ -82,7 +82,7 @@ jobs:
         with:
           username: ${{ secrets.BOT_USERNAME }}
           password: ${{ secrets.GITHUB_TOKEN }}
-          image: fedora-river-atomic 
+          image: terrafirma 
           registry: ${{ env.registry }}
           tags: |
             ${{ steps.generate-tags.outputs.alias_tags }}
@@ -98,7 +98,7 @@ jobs:
 
       - name: Sign container image
         run: |
-          cosign sign -y --recursive --key env://SIGNING_SECRET ${{ env.registry }}/fedora-river-atomic@${{ steps.push.outputs.digest }}
+          cosign sign -y --recursive --key env://SIGNING_SECRET ${{ env.registry }}/terrafirma@${{ steps.push.outputs.digest }}
         env:
           COSIGN_EXPERIMENTAL: false
           SIGNING_SECRET: ${{ secrets.SIGNING_SECRET }}
